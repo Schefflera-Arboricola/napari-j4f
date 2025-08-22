@@ -1,0 +1,57 @@
+name: napari-j4f
+display_name: J4f
+# use 'hidden' to remove plugin from napari hub search results
+visibility: public
+# see https://napari.org/stable/plugins/technical_references/manifest.html#fields for valid categories
+# categories: []
+contributions:
+  commands:
+    - id: napari-j4f.get_reader
+      python_name: napari_j4f._reader:napari_get_reader
+      title: Open data with J4f
+    - id: napari-j4f.write_multiple
+      python_name: napari_j4f._writer:write_multiple
+      title: Save multi-layer data with J4f
+    - id: napari-j4f.write_single_image
+      python_name: napari_j4f._writer:write_single_image
+      title: Save image data with J4f
+    - id: napari-j4f.make_sample_data
+      python_name: napari_j4f._sample_data:make_sample_data
+      title: Load sample data from J4f
+    - id: napari-j4f.make_container_widget
+      python_name: napari_j4f:ImageThreshold
+      title: Make threshold Container widget
+    - id: napari-j4f.make_magic_widget
+      python_name: napari_j4f:threshold_magic_widget
+      title: Make threshold magic widget
+    - id: napari-j4f.make_function_widget
+      python_name: napari_j4f:threshold_autogenerate_widget
+      title: Make threshold function widget
+    - id: napari-j4f.make_qwidget
+      python_name: napari_j4f:ExampleQWidget
+      title: Make example QWidget
+  readers:
+    - command: napari-j4f.get_reader
+      accepts_directories: false
+      filename_patterns: ['*.npy']
+  writers:
+    - command: napari-j4f.write_multiple
+      layer_types: ['image*','labels*']
+      filename_extensions: []
+    - command: napari-j4f.write_single_image
+      layer_types: ['image']
+      filename_extensions: ['.npy']
+  sample_data:
+    - command: napari-j4f.make_sample_data
+      display_name: J4f
+      key: unique_id.1
+  widgets:
+    - command: napari-j4f.make_container_widget
+      display_name: Container Threshold
+    - command: napari-j4f.make_magic_widget
+      display_name: Magic Threshold
+    - command: napari-j4f.make_function_widget
+      autogenerate: true
+      display_name: Autogenerate Threshold
+    - command: napari-j4f.make_qwidget
+      display_name: Example QWidget
